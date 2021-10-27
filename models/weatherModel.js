@@ -1,0 +1,67 @@
+const weatherModel = (id) => {
+    if(!id) {
+        return { id: -1, iconDay: require('../assets/transparent.png'), iconNight: require('../assets/transparent.png'), name: '-' };
+    }
+
+    const types = [
+        { id: 200, iconDay: require("../assets/weather_icons/weather_thunderstormRain_day.png"), iconNight: require("../assets/weather_icons/weather_thunderstormRain_night.png"), name: "Thunderstorm Rain" },
+        { id: 201, iconDay: require("../assets/weather_icons/weather_thunderstormRain_day.png"), iconNight: require("../assets/weather_icons/weather_thunderstormRain_night.png"), name: "Thunderstorm Rain" },
+        { id: 202, iconDay: require("../assets/weather_icons/weather_thunderstormRain_day.png"), iconNight: require("../assets/weather_icons/weather_thunderstormRain_night.png"), name: "Thunderstorm Rain" },
+        { id: 210, iconDay: require("../assets/weather_icons/weather_thunderstorm_day.png")    , iconNight: require("../assets/weather_icons/weather_thunderstorm_night.png")    , name: "Thunderstorm" },
+        { id: 211, iconDay: require("../assets/weather_icons/weather_thunderstorm_day.png")    , iconNight: require("../assets/weather_icons/weather_thunderstorm_night.png")    , name: "Thunderstorm" },
+        { id: 212, iconDay: require("../assets/weather_icons/weather_thunderstorm_day.png")    , iconNight: require("../assets/weather_icons/weather_thunderstorm_night.png")    , name: "Thunderstorm" },
+        { id: 221, iconDay: require("../assets/weather_icons/weather_thunderstorm_day.png")    , iconNight: require("../assets/weather_icons/weather_thunderstorm_night.png")    , name: "Thunderstorm" },
+        { id: 230, iconDay: require("../assets/weather_icons/weather_thunderstormRain_day.png"), iconNight: require("../assets/weather_icons/weather_thunderstormRain_night.png"), name: "Thunderstorm Rain" },
+        { id: 231, iconDay: require("../assets/weather_icons/weather_thunderstormRain_day.png"), iconNight: require("../assets/weather_icons/weather_thunderstormRain_night.png"), name: "Thunderstorm Rain" },
+        { id: 232, iconDay: require("../assets/weather_icons/weather_thunderstormRain_day.png"), iconNight: require("../assets/weather_icons/weather_thunderstormRain_night.png"), name: "Thunderstorm Rain" },
+        { id: 300, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 301, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 302, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 310, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 311, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 312, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 313, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 314, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 321, iconDay: require("../assets/weather_icons/weather_drizzle_day.png")         , iconNight: require("../assets/weather_icons/weather_drizzle_night.png")         , name: "Drizzle" },
+        { id: 500, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 501, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 502, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 503, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 504, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 511, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 520, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 521, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 522, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 531, iconDay: require("../assets/weather_icons/weather_rain_day.png")            , iconNight: require("../assets/weather_icons/weather_rain_night.png")            , name: "Rain" },
+        { id: 600, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 601, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 602, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 611, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 612, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 613, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 615, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 616, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 620, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 621, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 622, iconDay: require("../assets/weather_icons/weather_snow_day.png")            , iconNight: require("../assets/weather_icons/weather_snow_night.png")            , name: "Snow" },
+        { id: 701, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 711, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 721, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 731, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 741, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 751, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 761, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 762, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 771, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 781, iconDay: require("../assets/weather_icons/weather_mist_day.png")            , iconNight: require("../assets/weather_icons/weather_mist_night.png")            , name: "Mist" },
+        { id: 800, iconDay: require("../assets/weather_icons/weather_clearSky_day.png")        , iconNight: require("../assets/weather_icons/weather_clearSky_night.png")        , name: "Clear Sky" },
+        { id: 801, iconDay: require("../assets/weather_icons/weather_fewClouds_day.png")       , iconNight: require("../assets/weather_icons/weather_fewClouds_night.png")       , name: "Few Clouds" },
+        { id: 802, iconDay: require("../assets/weather_icons/weather_scatteredClouds_day.png") , iconNight: require("../assets/weather_icons/weather_scatteredClouds_night.png") , name: "Scattered Clouds" },
+        { id: 803, iconDay: require("../assets/weather_icons/weather_brokenClouds_day.png")    , iconNight: require("../assets/weather_icons/weather_brokenClouds_night.png")    , name: "Broken Clouds" },
+        { id: 804, iconDay: require("../assets/weather_icons/weather_overcastClouds_day.png")  , iconNight: require("../assets/weather_icons/weather_overcastClouds_night.png")  , name: "Overcast Clouds"},
+    ];
+
+  return types.filter((item) => item.id == id)[0];
+};
+
+export default weatherModel;
